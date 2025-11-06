@@ -8,10 +8,10 @@ export default function Hero() {
       </div>
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
         <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 drop-shadow-sm">
-          TikTok Video Downloader
+          Multi‑Platform Video Downloader
         </h1>
         <p className="mt-4 text-gray-700 md:text-lg">
-          Download TikTok videos in high quality without watermark. Paste a link and get it in seconds.
+          Grab videos from TikTok, YouTube, Instagram, and Rednote in seconds — high quality, no fuss.
         </p>
       </div>
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/60 via-white/50 to-white" />

@@ -29,7 +29,7 @@ function App() {
     setLoading(true);
     const stop = simulateProgress();
     try {
-      const res = await fetch(`${backend}/api/tiktok/metadata`, {
+      const res = await fetch(`${backend}/api/resolve`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url }),
@@ -39,7 +39,7 @@ function App() {
         throw new Error(t.detail || 'Failed to process the URL');
       }
       const data = await res.json();
-      setResult({ title: data.title, cover: data.cover, downloadUrl: data.download_url });
+      setResult({ title: data.title, cover: data.cover, downloadUrl: data.download_url, source: data.source });
     } catch (e) {
       setError(e.message || 'Something went wrong');
     } finally {
@@ -59,11 +59,11 @@ function App() {
           <p className="mt-4 text-red-600 text-sm text-center">{error}</p>
         )}
         {result && (
-          <ResultCard title={result.title} cover={result.cover} downloadUrl={result.downloadUrl} />
+          <ResultCard title={result.title} cover={result.cover} downloadUrl={result.downloadUrl} source={result.source} />
         )}
       </main>
       <Preloader visible={loading} progress={progress} />
-      <footer className="py-10 text-center text-xs text-gray-500">Built for fast, watermark-free downloads. Use responsibly.</footer>
+      <footer className="py-10 text-center text-xs text-gray-500">Built for fast, watermark-free downloads from TikTok, YouTube, Instagram, and Rednote. Use responsibly.</footer>
     </div>
   );
 }

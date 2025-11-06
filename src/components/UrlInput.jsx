@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Download } from 'lucide-react';
+import { Download, Link } from 'lucide-react';
 
 export default function UrlInput({ onSubmit, loading }) {
   const [url, setUrl] = useState('');
@@ -11,15 +11,18 @@ export default function UrlInput({ onSubmit, loading }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto mt-6 flex flex-col gap-3 md:flex-row md:items-center">
-      <input
-        type="url"
-        required
-        placeholder="Paste TikTok URL here"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-        className="flex-1 rounded-xl border border-gray-200 bg-white/90 px-4 py-3 text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-black focus:outline-none"
-      />
+    <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto mt-6 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3">
+      <div className="relative">
+        <input
+          type="url"
+          required
+          placeholder="Paste TikTok, YouTube, Instagram, or Rednote URL"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          className="w-full rounded-xl border border-gray-200 bg-white/90 pl-11 pr-4 py-3 text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-black focus:outline-none"
+        />
+        <Link className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+      </div>
       <button
         type="submit"
         disabled={loading}
