@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Download, Link } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link as LinkIcon } from 'lucide-react';
 
 export default function UrlInput({ onSubmit, loading }) {
   const [url, setUrl] = useState('');
@@ -11,26 +11,33 @@ export default function UrlInput({ onSubmit, loading }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-3xl mx-auto mt-6 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3">
-      <div className="relative">
-        <input
-          type="url"
-          required
-          placeholder="Paste TikTok, YouTube, Instagram, or Rednote URL"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          className="w-full rounded-xl border border-gray-200 bg-white/90 pl-11 pr-4 py-3 text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-black focus:outline-none"
-        />
-        <Link className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+    <form onSubmit={handleSubmit} className="mt-6 w-full">
+      <label htmlFor="videoUrl" className="sr-only">
+        Paste video URL
+      </label>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto]">
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-white/60">
+            <LinkIcon size={18} />
+          </div>
+          <input
+            id="videoUrl"
+            type="url"
+            required
+            placeholder="Paste a TikTok, YouTube, Instagram, or Rednote link"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-10 py-3 text-white placeholder-white/50 outline-none ring-0 transition focus:border-white/20 focus:bg-white/10"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 font-medium text-white shadow-sm transition hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {loading ? 'Resolving…' : 'Download'}
+        </button>
       </div>
-      <button
-        type="submit"
-        disabled={loading}
-        className="inline-flex items-center justify-center gap-2 rounded-xl bg-black px-5 py-3 font-medium text-white shadow-sm transition hover:opacity-90 disabled:opacity-60"
-      >
-        <Download className="h-5 w-5" />
-        {loading ? 'Processing...' : 'Download'}
-      </button>
     </form>
   );
 }
